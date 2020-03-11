@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,20 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def welcome_screen():
+    print('======================================')
+    print('//   Welcome to Adventure Game!   \\\\')
+    print('======================================')
+    print('')
+    print('# Select a direction: n, s, e, or w  #')
+    print('# Quit game: q                       #')
+    print('======================================')
+
+user = input(['n','s','e','w','q'])
+
+## LOOP
+while not user == 'q':
+    if user == n:
+        
