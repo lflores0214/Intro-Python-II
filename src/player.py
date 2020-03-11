@@ -12,4 +12,5 @@ class Player():
             self.room = newRoom
         else:
             print("\n ** There is nothing in this direction ** ")
-            
+    def __repr__(self):
+        return self.name

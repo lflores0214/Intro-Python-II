@@ -13,4 +13,4 @@ class Room():
         self.e_to: e_to
         
         def __repr__(self):
-            return self.name + " Class"
+            return self.name
