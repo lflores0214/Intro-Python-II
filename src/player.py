@@ -3,11 +3,11 @@
 from room import Room
 class Player():
     def __init__(self, name, room, items):
-        self.name: name
+        self.name = name
         self.room = room
         self.items = []
     def travel(self, room, direction):
-        if getattr(room, f"{direction}_to")!= None:
+        if getattr(room, f"{direction}_to") != None:
             newRoom = getattr(room, f"{direction}_to")
             self.room = newRoom
         else:
