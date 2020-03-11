@@ -22,6 +22,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+outside = room['outside']
+foyer = room['foyer']
+overlook = room['overlook']
+narrow = room['narrow']
+treasure = room['treasure']
 
 # Link rooms together
 
@@ -39,7 +44,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("Enter a name >> ").capitalize(), 'outside')
+player = Player(input("Enter a name >> ").capitalize(), outside)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -56,7 +61,6 @@ def welcome_screen():
     print('======================================')
     print('//   Welcome to Adventure Game!   \\\\')
     print('======================================')
-    print('')
     print('# Select a direction: n, s, e, or w  #')
     print('# Quit game: q                       #')
     print('======================================')
@@ -67,8 +71,8 @@ directions = ["n", "s", "w", "e"]
 # LOOP
 while True:
     # Print name of current room
-    print(f" You are in the {player.room.name}.")
-    print(f"{player.room.description}")
+    print(f"Current location: {player.room.name}")
+    print(player.room.description)
 
     user_input = input("Which direction would you like to go? > ").lower()
     if user_input in directions:
