@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input("Enter a name >> ").capitalize(), outside)
+player = Player(input("Enter a name >> ").capitalize(), 'outside')
 # Write a loop that:
 #
 # * Prints the current room name
