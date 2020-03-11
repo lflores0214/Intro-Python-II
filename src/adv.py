@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player(input("Enter a name >> ").capitalize(), outside)
 # Write a loop that:
 #
 # * Prints the current room name
@@ -61,9 +61,20 @@ def welcome_screen():
     print('# Quit game: q                       #')
     print('======================================')
 
-user = input(['n','s','e','w','q'])
 
-## LOOP
-while not user == 'q':
-    if user == n:
-        
+directions = ["n", "s", "w", "e"]
+
+# LOOP
+while True:
+    # Print name of current room
+    print(f" You are in the {player.room.name}.")
+    print(f"{player.room.description}")
+
+    user_input = input("Which direction would you like to go? > ").lower()
+    if user_input in directions:
+        player.travel(player.room, user_input)
+    elif user_input == "q":
+        print("Hope you had fun!")
+        break
+    else:
+        print("invalid input")
