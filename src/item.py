@@ -13,3 +13,18 @@ class Item:
 
         def __repr__(self):
             return self.name
+
+
+class Torch(Item):
+    def __init__(self, name, description, is_lit):
+        self.name = name
+        self.description = description
+        self.is_lit = False
+
+    def ignite(self):
+        self.is_lit = True
+        print("You lit the torch")
+
+    def extinguish(self):
+        self.is_lit = False
+        print("You extinguished the torch")
