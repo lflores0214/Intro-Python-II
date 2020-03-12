@@ -2,6 +2,7 @@
 # currently.
 from room import Room
 from item import Light, Food
+import os
 
 
 class Player():
@@ -16,12 +17,23 @@ class Player():
             self.room = getattr(self.room, f"{direction}_to")
             print(self.room)
         else:
-            print("\n ** There is nothing in this direction ** ")
+            os.system('clear')
+            print(
+                f"\n ** There is nothing in this direction ** \n \n {self.room}")
 
     def check_inventory(self):
-        print(f"{self.name} has: ")
-        for item in self.items:
-            print(item.name)
+        if len(self.items) == 0:
+            print(
+                f"{self.name} has nothing in their inventory. \n Check rooms with 'c' to look for anything useful ")
+        else:
+            print(f"{self.name} has: ")
+            for item in self.items:
+                print(f"{item.name}: {item.description} ")
+
+    def take_item(self, item):
+        self.items.append(item)
+        self.room.items.remove(item)
+        print(f"you took the {item.name}")
 
     def eat(self, food_item):
         if not isinstance(food_item, Food):

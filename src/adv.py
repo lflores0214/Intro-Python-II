@@ -79,6 +79,7 @@ def welcome_screen():
     print('|                   (q)uit,               |')
     print('|                   (i)nventory           |')
     print('|                   (c)heck room          |')
+    print('|                   (take) (item)         |')
     print('===========================================')
     print('\n\n')
     print(f"{player.name}'s current location: {player.room.name} \n")
@@ -95,6 +96,7 @@ def help_screen():
     print('|                   (q)uit,               |')
     print('|                   (i)nventory           |')
     print('|                   (c)heck room          |')
+    print('|                   (take) (item)         |')
     print('===========================================')
 
 
@@ -108,6 +110,9 @@ while True:
     # Print name of current room
 
     user_input = input("Type your command >> ").lower()
+    cmd = user_input.split(" ")
+    room_items = player.room.items
+    player_items = player.items
     if user_input in directions:
         player.travel(player.room, user_input)
     elif user_input == "q":
@@ -119,5 +124,14 @@ while True:
         player.check_inventory()
     elif user_input == "c":
         player.room.check_items()
+    elif cmd[0] == "take":
+        if len(player.room.items) == 0:
+            print(f"there is nothing to take in {player.room.name}")
+        elif len(cmd) == 1 and cmd[0] == "take":
+            print(f"please choose an item to take")
+        elif len(cmd) == 2:
+            for item in room_items:
+                if item.name.lower() == cmd[1]:
+                    player.take_item(item)
     else:
         print("invalid input")
