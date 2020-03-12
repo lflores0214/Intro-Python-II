@@ -1,3 +1,4 @@
+import os
 from room import Room
 from player import Player
 
@@ -58,21 +59,38 @@ player = Player(input("Enter a name >> ").capitalize(), outside)
 
 
 def welcome_screen():
-    print('======================================')
-    print('//   Welcome to Adventure Game!   \\\\')
-    print('======================================')
-    print('# Select a direction: n, s, e, or w  #')
-    print('# Quit game: q                       #')
-    print('======================================')
+    print('===========================================')
+    print('//        Welcome to Adventure Game!     \\\\')
+    print('===========================================')
+    print('|           inputs: (n)orth,              |')
+    print('|                   (s)outh,              |')
+    print('|                   (e)ast,               |')
+    print('|                   (w)est,               |')
+    print('|                   (h)elp,               |')
+    print('|                   (q)uit,               |')
+    print('===========================================')
 
+def help_screen():
+    print('===========================================')
+    print('|           inputs: (n)orth,              |')
+    print('|                   (s)outh,              |')
+    print('|                   (e)ast,               |')
+    print('|                   (w)est,               |')
+    print('|                   (h)elp,               |')
+    print('|                   (q)uit,               |')
+    print('===========================================')
+
+
+os.system('clear')
+welcome_screen()
 
 directions = ["n", "s", "w", "e"]
 
 # LOOP
 while True:
     # Print name of current room
-    print(f"Current location: {player.room.name}")
-    print(player.room.description)
+    print(f"{player.name}'s current location: {player.room.name} \n")
+    print(f"{player.room.description} \n")
 
     user_input = input("Which direction would you like to go? > ").lower()
     if user_input in directions:
@@ -80,5 +98,7 @@ while True:
     elif user_input == "q":
         print("Hope you had fun!")
         break
+    elif user_input == "h":
+        help_screen()
     else:
         print("invalid input")
