@@ -41,4 +41,4 @@ class Room():
     def check_items(self):
         print(f"{self.name} has: ")
         for item in self.items:
-            print(item.name)
+            print(f"{item.name} ")

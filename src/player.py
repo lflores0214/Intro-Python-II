@@ -28,12 +28,16 @@ class Player():
         else:
             print(f"{self.name} has: ")
             for item in self.items:
-                print(f"{item.name}: {item.description} ")
+                print(f"{item.name}: {item.description} \n")
 
     def take_item(self, item):
         self.items.append(item)
         self.room.items.remove(item)
         print(f"you took the {item.name}")
+    def drop_item(self, item):
+        self.items.remove(item)
+        self.room.items.append(item)
+        print(f"you dropped the {item.name}")
 
     def eat(self, food_item):
         if not isinstance(food_item, Food):

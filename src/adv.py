@@ -45,12 +45,15 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-## Items
-torch = Light("Torch", "a piece of wood with cloth wrapped around the end.", False)
+# Items
+torch = Light(
+    "Torch", "a piece of wood with cloth wrapped around the end.", False)
 apple = Food("Apple", "A juicy red apple", 20)
+mushroom = Food("Mushroom", "A brown mushrom", 15)
 
 room['outside'].items = [apple]
-room['foyer'].items = [torch]
+room['foyer'].items = [torch,mushroom]
+
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("Enter a name >> ").capitalize(), outside)
@@ -80,6 +83,7 @@ def welcome_screen():
     print('|                   (i)nventory           |')
     print('|                   (c)heck room          |')
     print('|                   (take) (item)         |')
+    print('|                   (eat)                 |')
     print('===========================================')
     print('\n\n')
     print(f"{player.name}'s current location: {player.room.name} \n")
@@ -97,6 +101,7 @@ def help_screen():
     print('|                   (i)nventory           |')
     print('|                   (c)heck room          |')
     print('|                   (take) (item)         |')
+    print('|                   (eat)                 |')
     print('===========================================')
 
 
@@ -125,13 +130,26 @@ while True:
     elif user_input == "c":
         player.room.check_items()
     elif cmd[0] == "take":
-        if len(player.room.items) == 0:
+        if len(room_items) == 0:
             print(f"there is nothing to take in {player.room.name}")
         elif len(cmd) == 1 and cmd[0] == "take":
-            print(f"please choose an item to take")
+            print(f"Choose an item to take")
         elif len(cmd) == 2:
             for item in room_items:
-                if item.name.lower() == cmd[1]:
+                if item.name.lower() == cmd[1].lower():
                     player.take_item(item)
+                elif item.name.lower() != cmd[1].lower():
+                    print(f"There is no {cmd[1]} in {player.room.name}")
+    elif cmd[0] == "drop":
+        if len(player_items) == 0:
+            print(f"{player.name} has no items to drop")
+        elif len(cmd) == 1 and cmd[0] == "drop":
+            print("Choose an item to drop")
+        elif len(cmd) == 2:
+            for item in player_items:
+                if item.name.lower() == cmd[1]:
+                    player.drop_item(item)
+                elif item.name.lower() != cmd[1]:
+                    print(f"there is no {cmd[1]} in your inventory")
     else:
         print("invalid input")
