@@ -1,7 +1,7 @@
 import os
 from room import Room
 from player import Player
-from item import Item
+from item import Item, Light, Food
 
 # Declare all the rooms
 
@@ -46,7 +46,11 @@ room['treasure'].s_to = room['narrow']
 #
 
 ## Items
+torch = Light("Torch", "a piece of wood with cloth wrapped around the end.", False)
+apple = Food("Apple", "A juicy red apple", 20)
 
+room['outside'].items = [apple]
+room['foyer'].items = [torch]
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("Enter a name >> ").capitalize(), outside)
@@ -74,6 +78,7 @@ def welcome_screen():
     print('|                   (h)elp,               |')
     print('|                   (q)uit,               |')
     print('|                   (i)nventory           |')
+    print('|                   (c)heck room          |')
     print('===========================================')
     print('\n\n')
     print(f"{player.name}'s current location: {player.room.name} \n")
@@ -89,6 +94,7 @@ def help_screen():
     print('|                   (h)elp,               |')
     print('|                   (q)uit,               |')
     print('|                   (i)nventory           |')
+    print('|                   (c)heck room          |')
     print('===========================================')
 
 
@@ -101,7 +107,7 @@ directions = ["n", "s", "w", "e"]
 while True:
     # Print name of current room
 
-    user_input = input("Which direction would you like to go? > ").lower()
+    user_input = input("Type your command >> ").lower()
     if user_input in directions:
         player.travel(player.room, user_input)
     elif user_input == "q":
@@ -111,5 +117,7 @@ while True:
         help_screen()
     elif user_input == "i":
         player.check_inventory()
+    elif user_input == "c":
+        player.room.check_items()
     else:
         print("invalid input")

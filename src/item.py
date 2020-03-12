@@ -15,16 +15,22 @@ class Item:
             return self.name
 
 
-class Torch(Item):
+class Light(Item):
     def __init__(self, name, description, is_lit):
         self.name = name
         self.description = description
-        self.is_lit = False
+        self.is_lit = is_lit
 
     def ignite(self):
         self.is_lit = True
-        print("You lit the torch")
+        print(f"You lit the {self.name}")
 
     def extinguish(self):
         self.is_lit = False
-        print("You extinguished the torch")
+        print(f"You extinguished the {self.name}")
+
+
+class Food(Item):
+    def __init__(self, name, description, energy):
+        super().__init__(name, description)
+        self.energy = energy

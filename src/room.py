@@ -38,5 +38,7 @@ class Room():
             pathways.append('e')
         return pathways
 
-        # def __repr__(self):
-        #     return self.name
+    def check_items(self):
+        print(f"{self.name} has: ")
+        for item in self.items:
+            print(item.name)
