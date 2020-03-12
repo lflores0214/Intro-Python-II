@@ -69,6 +69,10 @@ def welcome_screen():
     print('|                   (h)elp,               |')
     print('|                   (q)uit,               |')
     print('===========================================')
+    print('\n\n')
+    print(f"{player.name}'s current location: {player.room.name} \n")
+    print(f"{player.room.description} \n")
+
 
 def help_screen():
     print('===========================================')
@@ -89,8 +93,6 @@ directions = ["n", "s", "w", "e"]
 # LOOP
 while True:
     # Print name of current room
-    print(f"{player.name}'s current location: {player.room.name} \n")
-    print(f"{player.room.description} \n")
 
     user_input = input("Which direction would you like to go? > ").lower()
     if user_input in directions:

@@ -10,10 +10,9 @@ class Player():
         self.items = []
 
     def travel(self, room, direction):
-        if getattr(room, f"{direction}_to") != None:
-            newRoom = getattr(room, f"{direction}_to")
-            self.room = newRoom
-
+        if getattr(self.room, f"{direction}_to"):
+            self.room = getattr(self.room, f"{direction}_to")
+            print(self.room)
         else:
             print("\n ** There is nothing in this direction ** ")
 
