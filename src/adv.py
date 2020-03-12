@@ -1,6 +1,7 @@
 import os
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -44,8 +45,11 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
+
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input("Enter a name >> ").capitalize(), outside)
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -68,6 +72,7 @@ def welcome_screen():
     print('|                   (w)est,               |')
     print('|                   (h)elp,               |')
     print('|                   (q)uit,               |')
+    print('|                   (i)nventory           |')
     print('===========================================')
     print('\n\n')
     print(f"{player.name}'s current location: {player.room.name} \n")
@@ -82,6 +87,7 @@ def help_screen():
     print('|                   (w)est,               |')
     print('|                   (h)elp,               |')
     print('|                   (q)uit,               |')
+    print('|                   (i)nventory           |')
     print('===========================================')
 
 
@@ -102,5 +108,7 @@ while True:
         break
     elif user_input == "h":
         help_screen()
+    elif user_input == "i":
+        player.check_inventory()
     else:
         print("invalid input")

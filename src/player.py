@@ -16,5 +16,7 @@ class Player():
         else:
             print("\n ** There is nothing in this direction ** ")
 
-    def __repr__(self):
-        return self.name
+    def check_inventory(self):
+        print(f"{self.name} has: ")
+        for item in self.items:
+            print(item.name)
